@@ -1,11 +1,9 @@
 FROM python:3.11
 
-# COPY requirements.txt .
-COPY pyproject.toml .
+COPY requirements.txt .
 
-# RUN pip install -r requirements.txt
-RUN pip install --upgrade pip && \
-    pip install -e .
+RUN pip install --no-cache-dir -r requirements.txt 
+# --no-cache-dir - не сохранять кеш
 
 WORKDIR /app
 COPY src .
