@@ -1,15 +1,9 @@
 FROM python:3.11
 
 COPY requirements.txt .
-
-RUN pip install -r requirements.txt 
-# RUN pip install --no-cache-dir -r requirements.txt 
-# --no-cache-dir - не сохранять кеш
+RUN pip install -r requirements.txt
 
 WORKDIR /app
-COPY src .
-ENTRYPOINT [ "python", "main.py" ]
+COPY src ./src
 
-# WORKDIR /app
-# COPY src ./src
-# ENTRYPOINT [ "python", "-m", "src.main" ]
+ENTRYPOINT [ "python", "-m", "src.main" ]
