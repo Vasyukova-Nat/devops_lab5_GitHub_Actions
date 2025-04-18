@@ -1,6 +1,32 @@
-name: Build and Delivery
-# 18/04/25 11:34
+# # Моя версия
+# name: Build and Delivery
 
+# on:
+#   workflow_run:
+#     workflows: ["Test Python app"]
+#     types:
+#       - completed
+#   push:
+#     branches: ["main"]
+
+# jobs:
+#   cd:
+#     runs-on: ubuntu-latest
+#     if: ${{ github.event.workflow_run.conclusion == 'success' }}
+#     steps:
+#       - name: Login to DockerHub
+#         uses: docker/login-action@v3
+#         with:
+#           username: ${{ vars.DOCKERHUB_USERNAME }}
+#           password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+#       - name: Build and publish Docker image
+#         uses: docker/build-push-action@v6
+#         with:
+#           push: true
+#           tags: ${{ vars.DOCKERHUB_USERNAME }}/my-app:latest
+
+name: Build and Delivery
 on:
   workflow_run:
     workflows: ["Test Python app"]
@@ -11,7 +37,7 @@ on:
 
 jobs:
   cd:
-    runs-on: ubuntu-latest #
+    runs-on: ubuntu-latest
     if: ${{ github.event.workflow_run.conclusion == 'success' }}
     steps:
       - name: Login to DockerHub
